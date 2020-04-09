@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Realtor
 from import_export.admin import ImportExportModelAdmin
 
+
 class RealtorAdmin(ImportExportModelAdmin):
     list_display = ('id', 'name', 'email', 'hire_date')
     list_display_links = ('id', 'name')
