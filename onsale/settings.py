@@ -1,4 +1,4 @@
-
+import dj_database_url
 from django.contrib.messages import constants as messages
 import os
 
@@ -15,17 +15,12 @@ SECRET_KEY = 'e(!vxm6)v_$zsx10*6y*tgndrta8jfew&oc^i4op(h3xlxn#s!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'home.apps.HomeConfig',
-    'listings.apps.ListingsConfig',
-    'realtors.apps.RealtorsConfig',
-    'accounts.apps.AccountsConfig',
-    'contacts.apps.ContactsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,10 +28,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
+    'home.apps.HomeConfig',
+    'listings.apps.ListingsConfig',
+    'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,6 +81,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -121,6 +126,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'onsale/static')
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
