@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    'import_export',
+
     'home.apps.HomeConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
