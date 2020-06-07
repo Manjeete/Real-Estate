@@ -1,6 +1,8 @@
 import dj_database_url
 from django.contrib.messages import constants as messages
 import os
+from decouple import config
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,10 +78,10 @@ WSGI_APPLICATION = 'onsale.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'onsale',
-        'USER': 'postgres',
-        'PASSWORD': 'manjeet',
-        'HOSt': 'localhost'
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOSt': config('HOST')
     }
 }
 
@@ -141,8 +143,8 @@ MESSAGE_TAGS = {
 
 
 # email sending
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tecnicasol999@gmail.com'
-EMAIL_HOST_PASSWORD = 'howtosearch'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
