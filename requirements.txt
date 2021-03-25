@@ -17,7 +17,7 @@ psycopg2-binary==2.8.4
 pycodestyle==2.5.0
 python-decouple==3.3
 pytz==2019.3
-PyYAML==5.3.1
+PyYAML==5.4
 sqlparse==0.3.1
 tablib==1.1.0
 whitenoise==5.0.1
